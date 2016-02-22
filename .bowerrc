@@ -1,0 +1,5 @@
+{
+  "directory": "bower_components",
+  "proxy":"http://ayushy:ayushy%40Mindless%402016@genproxy.amdocs.com:8080/",
+	"https-proxy":"http://ayushy:ayushy%40Mindless%402016@genproxy.amdocs.com:8080/"
+}

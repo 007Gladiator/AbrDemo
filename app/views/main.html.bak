@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>GetSelectOptionData</title>
+    <highchart id="chart1" config="highchartsNG"></highchart>
+</head>
+<body>
+    <form name="Form">
+        <select name="Select" onchange="showData()">
+            <option value="SelectM">Select:</option>
+            <option value="hdl_amt">Option 1</option>
+            <option value="sld_amt">Option 2</option>
+            <option value="net_amt">Option 3</option>
+        </select>
+    </form>
+
+    <p id="firstP">&nbsp;</p>
+    <p id="secondP">&nbsp;</p>
+    <p id="thirdP">&nbsp;</p>
+
+    <script>
+    function showData() {
+        var theSelect = demoForm.demoSelect;
+        var firstP = document.getElementById('firstP');
+        var secondP = document.getElementById('secondP');
+        var thirdP = document.getElementById('thirdP');
+        firstP.innerHTML = ('This option\'s index number is: ' + theSelect.selectedIndex + ' (Javascript index numbers start at 0)');
+        secondP.innerHTML = ('Its value is: ' + theSelect[theSelect.selectedIndex].value);
+        thirdP.innerHTML = ('Its text is: ' + theSelect[theSelect.selectedIndex].text);
+    }
+    </script>
+	
+</body>
+</html>
