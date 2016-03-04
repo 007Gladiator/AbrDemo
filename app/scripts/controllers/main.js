@@ -12,18 +12,12 @@ Highcharts.setOptions({
    colors: ["#DDDF0D", "#7798BF", "#55BF3B", "#DF5353", "#aaeeee", "#ff0066", "#eeaaee",
       "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
    chart: {
-      backgroundColor: {
-         linearGradient: [0, 0, 0, 400],
-         stops: [
-            [0, 'rgb(96, 96, 96)'],
-            [1, 'rgb(16, 16, 16)']
-         ]
-      },
+      backgroundColor: 'transparent',
       borderWidth: 0,
       borderRadius: 15,
       plotBackgroundColor: null,
       plotShadow: false,
-      plotBorderWidth: 0
+      plotBorderWidth: 0,
    },
    title: {
       style: {
@@ -107,8 +101,6 @@ Highcharts.setOptions({
          color: '#FFF'
       }
    },
-   
-   
    plotOptions: {
       line: {
          dataLabels: {
@@ -129,23 +121,21 @@ Highcharts.setOptions({
          }
       }
    },
-   
    toolbar: {
       itemStyle: {
          color: '#CCC'
       }
    }
-}); 
+});  
 angular.module('abrdemo1App').controller('MainCtrl', 
 	function ($scope, $http, $window) {
 		
-		
-		
-		$http.get('http://10.19.12.185:8080/ea-service/sectyoy?report_year=2015&report_type=M&region=Southeast&rvp_code=SC2&channel=Premise&branch_code=AS&data_field=hdl_amt', {					headers: {'Content-Type':'application/json'}})
+		$http.get('http://10.19.12.185:8080/ea-service/sectyoy?report_year=2015&report_type=M&region=Southeast&rvp_code=SC2&channel=Premise&branch_code=AS&data_field=hdl_amt', {
+					headers: {'Content-Type':'application/json'}})
                             .success(function(data) {
 							$scope.jsonData=data.data;
-              $scope.prev_kpi_date = [];
-              $scope.prev_kpi_date_lbl = [];
+                            $scope.prev_kpi_date = [];
+                            $scope.prev_kpi_date_lbl = [];
 							$scope.prev_kpi_lbl = [];
 							$scope.prev_kpi_val = [];
 							$scope.kpi_date = [];
@@ -154,8 +144,8 @@ angular.module('abrdemo1App').controller('MainCtrl',
                             var seriesData;
                             for(var value in $scope.jsonData)
                             {
-								  $scope.prev_kpi_date[value]=$scope.jsonData[value].prev_kpi_date;
-                  $scope.prev_kpi_date_lbl[value]=$scope.jsonData[value].prev_kpi_date_lbl;
+								$scope.prev_kpi_date[value]=$scope.jsonData[value].prev_kpi_date;
+                                $scope.prev_kpi_date_lbl[value]=$scope.jsonData[value].prev_kpi_date_lbl;
 							    $scope.prev_kpi_lbl[value]=$scope.jsonData[value].prev_kpi_lbl;
 							    $scope.prev_kpi_val[value]=$scope.jsonData[value].prev_kpi_val;
 							    $scope.kpi_date[value]=$scope.jsonData[value].kpi_date;
@@ -177,11 +167,11 @@ angular.module('abrdemo1App').controller('MainCtrl',
 					function updateChart()
 					{
 						$scope.highchartsNG.series.push({name:'2014', data:$scope.prev_kpi_val})
-					  $scope.highchartsNG.series.push({name:'2015', data:$scope.kpi_val})
+					    $scope.highchartsNG.series.push({name:'2015', data:$scope.kpi_val})
 						$scope.highchartsNG.xAxis.categories=$scope.prev_kpi_date_lbl
-						$scope.highchartsNG.yAxis.title.text='Amount'
-						$scope.highchartsNG.title.text='ABR Demo'
-						$scope.highchartsNG.yAxis.title.text='Amount'
+						$scope.highchartsNG.yAxis.title.text='Amount (in $)'
+						$scope.highchartsNG.title.text='Southwest Region: Year-Over-Year Comparison '
+						$scope.highchartsNG.yAxis.title.text='Amount (in $)'
 					}
 		$scope.highchartsNG = {
         options: {
@@ -196,8 +186,5 @@ angular.module('abrdemo1App').controller('MainCtrl',
 		},
         series: [],
         loading: false
-           
-      
-        
     }
   });

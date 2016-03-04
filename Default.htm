@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('MyApp', [])
+        app.controller('MyController', function ($scope, $window) {
+            $scope.amounts = [{
+                Id: 'hdl_amt',
+                Name: 'HDL_AMT'
+            }, {
+                Id: 'sld_amt',
+                Name: 'SLD_AMT'
+            }, {
+                Id: 'net_amt',
+                Name: 'NET_AMT'
+            }];
+
+            $scope.GetValue = function (amt_type) {
+                var amt_typeId = $scope.ddlamounts;
+                var amt_typeName = $.grep($scope.amounts, function (amt_type) {
+                    return amt_type.Id == amt_typeId;
+                })[0].Name;
+                $window.alert("Selected Value: " + amt_typeId + "\nSelected Text: " + amt_typeName);
+                
+            }
+            
+        });
+        $scope.sel_option = amt_typeName;
+    </script>
+    <div ng-app="MyApp" ng-controller="MyController">
+        <select ng-model="ddlamounts" ng-options="amt_type.Id as amt_type.Name for amt_type in amounts track by amt_type.Id"
+            ng-change="GetValue()">
+            </select>
+         <hr>
+  <tt>ddlamounts = {{ddlamounts}}</tt><br/>
+    </div>
+    
+
+</body>
+</html>

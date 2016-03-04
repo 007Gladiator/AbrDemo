@@ -76,7 +76,7 @@
     </form>
 		<div>
 				<div class="datatable" id="datatable" >
-					<p style="color:white;float:center"><em> For Month JAN 2015</em></p>
+					<p style="color:white;float:center"><em> For Month JAN</em></p>
 <table class="table  table-condensed">
            <!-- <thead>
             <tr>

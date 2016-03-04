@@ -1,35 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>GetSelectOptionData</title>
-    <highchart id="chart1" config="highchartsNG"></highchart>
+  <head>
+  	 
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="menu/styles.css">
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="menu/script.js"></script>
+   <title>CSS MenuMaker</title>
+  
+
 </head>
 <body>
-    <form name="Form">
-        <select name="Select" onchange="showData()">
-            <option value="SelectM">Select:</option>
-            <option value="hdl_amt">Option 1</option>
-            <option value="sld_amt">Option 2</option>
-            <option value="net_amt">Option 3</option>
-        </select>
-    </form>
 
-    <p id="firstP">&nbsp;</p>
-    <p id="secondP">&nbsp;</p>
-    <p id="thirdP">&nbsp;</p>
+<!--<div layout="row"></div>-->
+<div class="col-md-12" style="border : none;">
+	<div class="col-md-4">
+		<div class="cssmenu" id='cssmenu'>
+	    <ul>
+	       <li class='active has-sub'><a href='#'>Year</a>
+	       		<ul>
+	             <li ><a href='#'>2016</a></li>
+	             <li ><a href='#' style="color:red">2015</a></li>
+	             <li ><a href='#'>2014</a></li>
+	          </ul>
+	       </li>   
+	       <li class='active has-sub'><a href='#'>Type</a>
+	          <ul>
+	             <li ><a href='#'>By Year</a></li>
+	             <li ><a href='#' style="color:red">By Month</a></li>
+	             <li ><a href='#'>Weekly Avg By Month</a></li>
+	             <li ><a href='#'>By Week</a></li>
+	          </ul>
+	       </li>
+	       	 
+	    </ul>
+	    </div>	
+	</div>
+	<div class="col-md-8">
+		<div>
+			<highchart id="chart1" config="highchartsNG" ></highchart>
+		</div>	
+	</div>
+</div>
+<!--<div><highchart id="chart1" config="highchartsNG" ></highchart></div>-->
 
-    <script>
-    function showData() {
-        var theSelect = demoForm.demoSelect;
-        var firstP = document.getElementById('firstP');
-        var secondP = document.getElementById('secondP');
-        var thirdP = document.getElementById('thirdP');
-        firstP.innerHTML = ('This option\'s index number is: ' + theSelect.selectedIndex + ' (Javascript index numbers start at 0)');
-        secondP.innerHTML = ('Its value is: ' + theSelect[theSelect.selectedIndex].value);
-        thirdP.innerHTML = ('Its text is: ' + theSelect[theSelect.selectedIndex].text);
-    }
-    </script>
-	
+
 </body>
 </html>

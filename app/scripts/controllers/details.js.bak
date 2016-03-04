@@ -29,7 +29,9 @@ angular.module('abrdemo1App')
         $scope.sortKey = keyname;   //set the sortKey to the param passed
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
-         
+         $('data2').DataTable( {
+    select: true
+} );
 // prepare headers 
 // $scope.headers = [
 //                { "order": 1, "width": 0, "label": "Region", "data": "region", "type": "string", "visible": false },

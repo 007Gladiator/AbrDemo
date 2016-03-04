@@ -38,6 +38,6 @@ angular.module('abrdemo1App', [
         controllerAs: 'about'
       })
       .otherwise({
-        redirectTo: '/details'
+        redirectTo: '/yoy'
       });
   });

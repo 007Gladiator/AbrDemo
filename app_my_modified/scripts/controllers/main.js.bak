@@ -1,0 +1,70 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name abrdemo1App.controller:MainCtrl
+ * @description
+ * # MainCtrl
+ * Controller of the abrdemo1App
+ */
+angular.module('abrdemo1App').controller('MainCtrl', 
+	function ($scope, $http, $window) {
+		
+		$http.get('http://10.19.12.185:8080/ea-service/sectyoy?report_year=2015&report_type=M&region=Southeast&rvp_code=SC2&channel=Premise&branch_code=AS&data_field=hdl_amt', {
+					headers: {'Content-Type':'application/json'}})
+                            .success(function(data) {
+							$scope.jsonData=data.data;
+                            $scope.prev_kpi_date = [];
+                            $scope.prev_kpi_date_lbl = [];
+							$scope.prev_kpi_lbl = [];
+							$scope.prev_kpi_val = [];
+							$scope.kpi_date = [];
+							$scope.kpi_lbl = [];
+							$scope.kpi_val = [];
+                            var seriesData;
+                            for(var value in $scope.jsonData)
+                            {
+								$scope.prev_kpi_date[value]=$scope.jsonData[value].prev_kpi_date;
+                                $scope.prev_kpi_date_lbl[value]=$scope.jsonData[value].prev_kpi_date_lbl;
+							    $scope.prev_kpi_lbl[value]=$scope.jsonData[value].prev_kpi_lbl;
+							    $scope.prev_kpi_val[value]=$scope.jsonData[value].prev_kpi_val;
+							    $scope.kpi_date[value]=$scope.jsonData[value].kpi_date;
+							    $scope.kpi_lbl[value]=$scope.jsonData[value].kpi_lbl;
+							    $scope.kpi_val[value]=$scope.jsonData[value].kpi_val;
+                                //$scope.cat[value]=$scope.jsonData[value].departmentName;
+                                //$scope.ser[value]=$scope.jsonData[value].noOfEmployees;
+                            }
+                            //cat1=$scope.cat;
+							console.log("categories >>>"+$scope.prev_kpi_date_lbl);
+                            console.log("categories >>>"+$scope.prev_kpi_val);
+							console.log("categories >>>"+$scope.kpi_val);
+					        //console.log("series >>>"+$scope.ser); 
+                            updateChart();
+					}).error(function(data){
+                        $window.alert("Some Error occured!!")
+                    });
+					
+					function updateChart()
+					{
+						$scope.highchartsNG.series.push({name:'2014', data:$scope.prev_kpi_val})
+					    $scope.highchartsNG.series.push({name:'2015', data:$scope.kpi_val})
+						$scope.highchartsNG.xAxis.categories=$scope.prev_kpi_date_lbl
+						$scope.highchartsNG.yAxis.title.text='Amount'
+						$scope.highchartsNG.title.text='ABR Demo'
+						$scope.highchartsNG.yAxis.title.text='Amount'
+					}
+		$scope.highchartsNG = {
+        options: {
+            chart: {
+                type: 'column'
+            }
+        },
+		title:{text:''},
+		yAxis: {title:{text:''}},
+		xAxis:{
+			categories:[]
+		},
+        series: [],
+        loading: false
+    }
+  });

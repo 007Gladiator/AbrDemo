@@ -121,12 +121,6 @@ Highcharts.setOptions({
          }
       }
    },
-   toolbar: {
-      itemStyle: {
-         color: '#CCC'
-      }
-   }
-});  
 angular.module('abrdemo1App').controller('MainCtrl', 
 	function ($scope, $http, $window) {
 		
@@ -134,8 +128,8 @@ angular.module('abrdemo1App').controller('MainCtrl',
 					headers: {'Content-Type':'application/json'}})
                             .success(function(data) {
 							$scope.jsonData=data.data;
-                            $scope.prev_kpi_date = [];
-                            $scope.prev_kpi_date_lbl = [];
+              $scope.prev_kpi_date = [];
+              $scope.prev_kpi_date_lbl = [];
 							$scope.prev_kpi_lbl = [];
 							$scope.prev_kpi_val = [];
 							$scope.kpi_date = [];
@@ -170,7 +164,7 @@ angular.module('abrdemo1App').controller('MainCtrl',
 					    $scope.highchartsNG.series.push({name:'2015', data:$scope.kpi_val})
 						$scope.highchartsNG.xAxis.categories=$scope.prev_kpi_date_lbl
 						$scope.highchartsNG.yAxis.title.text='Amount (in $)'
-						$scope.highchartsNG.title.text='Southwest Region'
+						$scope.highchartsNG.title.text='ABR YOY'
 						$scope.highchartsNG.yAxis.title.text='Amount (in $)'
 					}
 		$scope.highchartsNG = {
